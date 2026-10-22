@@ -573,6 +573,10 @@ pub struct PdfCraftApp {
     /// A build for managed work computers (the desktop app turns it on; see `workplace`): only
     /// finished tools, and no AI placeholders, developer credits, project links or update check.
     pub workplace: bool,
+    /// A signing action waiting on the workplace build's Adobe Sign prompt (`workplace`).
+    pub(crate) pending_sign: Option<workplace::PendingSign>,
+    /// "Sign here instead" was chosen at the Adobe Sign prompt: no more asking until restart.
+    pub(crate) sign_here_ok: bool,
     pub(crate) updates: updates::Updates,
     /// Lists the Print dialog's printers in the background (the desktop app sets it; see
     /// [`PrinterSource`]).
@@ -981,6 +985,8 @@ impl PdfCraftApp {
             dialog: None,
             update_source: None,
             workplace: false,
+            pending_sign: None,
+            sign_here_ok: false,
             updates: updates::Updates::default(),
             printer_source: None,
             options_source: None,

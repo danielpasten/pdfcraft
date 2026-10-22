@@ -2514,3 +2514,9 @@ animation effects	Off	Ανενεργά
 	field names can't contain a period: {name}	τα ονόματα πεδίων δεν μπορούν να περιέχουν τελεία: {name}
 	two cells would both be named {name}	δύο κελιά θα είχαν το ίδιο όνομα {name}
 	a field named {name} already exists	υπάρχει ήδη πεδίο με όνομα {name}
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Χρησιμοποιήστε το Adobe Sign για επίσημες υπογραφές
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Οι επίσημες υπογραφές και τα αιτήματα υπογραφής από άτομα εκτός της Women for Women International γίνονται μέσω του Adobe Sign. Ανοίξτε το Adobe Sign, συνδεθείτε με τον λογαριασμό εργασίας σας και ανεβάστε εκεί αυτό το PDF.
+	Open Adobe Sign	Άνοιγμα του Adobe Sign
+	Sign here instead	Υπογραφή εδώ ούτως ή άλλως
+	Request signatures (Adobe Sign)	Αίτημα υπογραφών (Adobe Sign)

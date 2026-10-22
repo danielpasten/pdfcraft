@@ -2744,3 +2744,9 @@ theme	Appearance	Tampilan
 	field names can't contain a period: {name}	nama kolom tidak boleh berisi titik: {name}
 	two cells would both be named {name}	dua sel akan sama-sama bernama {name}
 	a field named {name} already exists	kolom bernama {name} sudah ada
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Gunakan Adobe Sign untuk tanda tangan resmi
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Tanda tangan resmi dan permintaan tanda tangan dari orang di luar Women for Women International dilakukan melalui Adobe Sign. Buka Adobe Sign, masuk dengan akun kerja Anda, lalu unggah PDF ini di sana.
+	Open Adobe Sign	Buka Adobe Sign
+	Sign here instead	Tetap tanda tangani di sini
+	Request signatures (Adobe Sign)	Minta tanda tangan (Adobe Sign)

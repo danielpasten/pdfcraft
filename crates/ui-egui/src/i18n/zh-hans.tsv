@@ -2472,3 +2472,9 @@ animation effects	Off	关
 	field names can't contain a period: {name}	字段名称不能包含句点：{name}
 	two cells would both be named {name}	两个单元格的名称都会是 {name}
 	a field named {name} already exists	已存在名为 {name} 的字段
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	正式签名请使用 Adobe Sign
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	正式签名以及向 Women for Women International 以外人员发起的签名请求，均通过 Adobe Sign 完成。请打开 Adobe Sign，用工作帐户登录，并在那里上传此 PDF。
+	Open Adobe Sign	打开 Adobe Sign
+	Sign here instead	仍在此处签名
+	Request signatures (Adobe Sign)	请求签名 (Adobe Sign)

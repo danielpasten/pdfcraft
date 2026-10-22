@@ -2508,3 +2508,9 @@ animation effects	Off	オフ
 	field names can't contain a period: {name}	フィールド名にピリオドは使えません: {name}
 	two cells would both be named {name}	2 つのセルが同じ名前 {name} になります
 	a field named {name} already exists	{name} という名前のフィールドは既にあります
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	正式な署名には Adobe Sign を使用してください
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	正式な署名や、Women for Women International の外部の方への署名依頼は Adobe Sign で行います。Adobe Sign を開き、職場のアカウントでサインインして、この PDF をアップロードしてください。
+	Open Adobe Sign	Adobe Sign を開く
+	Sign here instead	ここで署名する
+	Request signatures (Adobe Sign)	署名を依頼 (Adobe Sign)

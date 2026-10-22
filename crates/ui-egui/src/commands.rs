@@ -153,6 +153,10 @@ impl PdfCraftApp {
             self.notify(why);
             return false;
         }
+        // A workplace build asks first: official signatures go through Adobe Sign.
+        if self.hold_for_adobe_sign(crate::workplace::PendingSign::Command(spec.id)) {
+            return true;
+        }
         let active = self.active;
         let targets = active.map(|i| self.views[i].target_pages()).unwrap_or_default();
         match id {

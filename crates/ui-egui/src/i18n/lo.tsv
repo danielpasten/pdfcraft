@@ -2422,3 +2422,9 @@ animation effects	Off	ປິດ
 	Make properties default	ກຳນົດຄຸນສົມບັດເປັນຄ່າເລີ່ມຕົ້ນ
 	Pages selected	ໜ້າທີ່ເລືອກ
 	Page properties	ຄຸນສົມບັດໜ້າ
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	ໃຊ້ Adobe Sign ສຳລັບລາຍເຊັນທາງການ
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	ລາຍເຊັນທາງການ ແລະ ການຂໍລາຍເຊັນຈາກບຸກຄົນນອກ Women for Women International ແມ່ນເຮັດຜ່ານ Adobe Sign. ເປີດ Adobe Sign, ເຂົ້າສູ່ລະບົບດ້ວຍບັນຊີວຽກຂອງທ່ານ ແລ້ວອັບໂຫຼດ PDF ນີ້ຢູ່ທີ່ນັ້ນ.
+	Open Adobe Sign	ເປີດ Adobe Sign
+	Sign here instead	ເຊັນຢູ່ນີ້ແທນ
+	Request signatures (Adobe Sign)	ຂໍລາຍເຊັນ (Adobe Sign)

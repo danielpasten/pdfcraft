@@ -2421,3 +2421,9 @@ animation effects	Off	Выкл
 	field names can't contain a period: {name}	имена полей не могут содержать точку: {name}
 	two cells would both be named {name}	две ячейки получили бы одно имя {name}
 	a field named {name} already exists	поле с именем {name} уже существует
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Для официальных подписей используйте Adobe Sign
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Официальные подписи и запросы подписи у людей вне Women for Women International оформляются через Adobe Sign. Откройте Adobe Sign, войдите с рабочей учётной записью и загрузите туда этот PDF.
+	Open Adobe Sign	Открыть Adobe Sign
+	Sign here instead	Всё равно подписать здесь
+	Request signatures (Adobe Sign)	Запросить подписи (Adobe Sign)

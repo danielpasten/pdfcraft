@@ -2458,3 +2458,9 @@ animation effects	Off	關
 	field names can't contain a period: {name}	欄位名稱不能包含句點：{name}
 	two cells would both be named {name}	兩個儲存格的名稱都會是 {name}
 	a field named {name} already exists	已有名為 {name} 的欄位
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	正式簽名請使用 Adobe Sign
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	正式簽名以及向 Women for Women International 以外人員提出的簽名要求，均透過 Adobe Sign 完成。請開啟 Adobe Sign，以工作帳戶登入，並在該處上傳此 PDF。
+	Open Adobe Sign	開啟 Adobe Sign
+	Sign here instead	仍在此處簽名
+	Request signatures (Adobe Sign)	要求簽名 (Adobe Sign)

@@ -2784,3 +2784,9 @@ certificate	Version	الإصدار
 	field names can't contain a period: {name}	لا يمكن أن تحتوي أسماء الحقول على نقطة: {name}
 	two cells would both be named {name}	ستحمل خليتان الاسم نفسه {name}
 	a field named {name} already exists	يوجد حقل باسم {name} بالفعل
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	استخدم Adobe Sign للتوقيعات الرسمية
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	تتم التوقيعات الرسمية، وطلبات التوقيع من أشخاص خارج Women for Women International، عبر Adobe Sign. افتح Adobe Sign وسجّل الدخول بحساب العمل، ثم ارفع ملف PDF هذا هناك.
+	Open Adobe Sign	فتح Adobe Sign
+	Sign here instead	التوقيع هنا بدلاً من ذلك
+	Request signatures (Adobe Sign)	طلب توقيعات (Adobe Sign)

@@ -2506,3 +2506,9 @@ animation effects	Off	Өшірулі
 	field names can't contain a period: {name}	өріс атауларында нүкте болмауы керек: {name}
 	two cells would both be named {name}	екі ұяшықтың да атауы {name} болар еді
 	a field named {name} already exists	{name} атты өріс бар
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Ресми қолтаңбалар үшін Adobe Sign пайдаланыңыз
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Ресми қолтаңбалар және Women for Women International ұйымынан тыс адамдардан қолтаңба сұрау Adobe Sign арқылы жасалады. Adobe Sign қызметін ашып, жұмыс тіркелгісімен кіріңіз де, осы PDF файлын сонда жүктеңіз.
+	Open Adobe Sign	Adobe Sign ашу
+	Sign here instead	Бәрібір осында қол қою
+	Request signatures (Adobe Sign)	Қолтаңба сұрау (Adobe Sign)

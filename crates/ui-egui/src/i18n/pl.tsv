@@ -2604,3 +2604,9 @@ animation effects	Off	Wyłączone
 	field names can't contain a period: {name}	nazwy pól nie mogą zawierać kropki: {name}
 	two cells would both be named {name}	dwie komórki miałyby nazwę {name}
 	a field named {name} already exists	pole o nazwie {name} już istnieje
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Do podpisów oficjalnych używaj Adobe Sign
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Podpisy oficjalne i prośby o podpis kierowane do osób spoza Women for Women International obsługuje Adobe Sign. Otwórz Adobe Sign, zaloguj się kontem służbowym i prześlij tam ten plik PDF.
+	Open Adobe Sign	Otwórz Adobe Sign
+	Sign here instead	Mimo to podpisz tutaj
+	Request signatures (Adobe Sign)	Poproś o podpisy (Adobe Sign)

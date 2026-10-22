@@ -2507,3 +2507,9 @@ animation effects	Off	Ki
 	field names can't contain a period: {name}	a mezőnevek nem tartalmazhatnak pontot: {name}
 	two cells would both be named {name}	két cella neve is {name} lenne
 	a field named {name} already exists	már van {name} nevű mező
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Hivatalos aláírásokhoz használja az Adobe Signt
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	A hivatalos aláírások és a Women for Women International szervezeten kívüli személyektől kért aláírások az Adobe Signon keresztül történnek. Nyissa meg az Adobe Signt, jelentkezzen be a munkahelyi fiókjával, és töltse fel oda ezt a PDF-et.
+	Open Adobe Sign	Adobe Sign megnyitása
+	Sign here instead	Aláírás mégis itt
+	Request signatures (Adobe Sign)	Aláírások kérése (Adobe Sign)

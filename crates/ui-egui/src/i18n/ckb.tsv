@@ -2706,3 +2706,9 @@ certificate	Version	وەشان
 	Make properties default	کردنی تایبەتمەندییەکان بە بنەڕەتی
 	Pages selected	پەڕە هەڵبژێردراوەکان
 	Page properties	تایبەتمەندییەکانی پەڕە
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	بۆ واژۆی فەرمی Adobe Sign بەکاربهێنە
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	واژۆی فەرمی و داواکاری واژۆ لە کەسانی دەرەوەی Women for Women International لە ڕێگەی Adobe Sign ەوە دەکرێن. Adobe Sign بکەرەوە، بە هەژماری کارەکەت بچۆ ژوورەوە و ئەم PDFە لەوێ بار بکە.
+	Open Adobe Sign	کردنەوەی Adobe Sign
+	Sign here instead	لێرە واژۆ بکە
+	Request signatures (Adobe Sign)	داواکردنی واژۆ (Adobe Sign)

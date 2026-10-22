@@ -2509,3 +2509,9 @@ animation effects	Off	Aus
 	field names can't contain a period: {name}	Feldnamen dürfen keinen Punkt enthalten: {name}
 	two cells would both be named {name}	zwei Zellen hätten beide den Namen {name}
 	a field named {name} already exists	ein Feld namens {name} ist bereits vorhanden
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Für offizielle Unterschriften Adobe Sign verwenden
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Offizielle Unterschriften und Unterschriftsanfragen an Personen außerhalb von Women for Women International laufen über Adobe Sign. Öffnen Sie Adobe Sign, melden Sie sich mit Ihrem Arbeitskonto an und laden Sie diese PDF dort hoch.
+	Open Adobe Sign	Adobe Sign öffnen
+	Sign here instead	Trotzdem hier unterschreiben
+	Request signatures (Adobe Sign)	Unterschriften anfordern (Adobe Sign)

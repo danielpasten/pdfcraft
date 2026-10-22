@@ -2774,3 +2774,9 @@ certificate	Version	Version
 	field names can't contain a period: {name}	les noms de champ ne peuvent pas contenir de point : {name}
 	two cells would both be named {name}	deux cellules porteraient le nom {name}
 	a field named {name} already exists	un champ nommé {name} existe déjà
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Utilisez Adobe Sign pour les signatures officielles
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Les signatures officielles et les demandes de signature adressées à des personnes extérieures à Women for Women International passent par Adobe Sign. Ouvrez Adobe Sign, connectez-vous avec votre compte professionnel et importez-y ce PDF.
+	Open Adobe Sign	Ouvrir Adobe Sign
+	Sign here instead	Signer ici quand même
+	Request signatures (Adobe Sign)	Demander des signatures (Adobe Sign)

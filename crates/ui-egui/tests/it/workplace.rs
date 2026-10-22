@@ -93,3 +93,70 @@ fn project_link_and_update_check_do_nothing() {
     let mut h = harness(false, |_| {});
     assert!(h.state_mut().execute("help.github"), "the default build opens the repository");
 }
+
+const ONE_PAGE: &[u8] = b"%PDF-1.7\n1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj\n2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj\n3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 200 200] >> endobj\ntrailer << /Root 1 0 R >>\n%%EOF";
+const MY_APPS: &str = "https://launcher.myapps.microsoft.com/api/signin/";
+
+fn with_document(workplace: bool) -> Harness<'static, PdfCraftApp> {
+    harness(workplace, |app| {
+        app.open_bytes("one.pdf", None, ONE_PAGE.to_vec()).unwrap();
+    })
+}
+
+fn signing_area(h: &Harness<'static, PdfCraftApp>) -> bool {
+    matches!(h.state().quick_tool, pdfcraft_ui_egui::QuickTool::SignArea { .. })
+}
+
+#[test]
+fn signing_asks_to_use_adobe_sign_first() {
+    let mut h = with_document(true);
+    assert!(h.state_mut().execute("sign.digital"));
+    h.run_steps(3);
+    assert!(!signing_area(&h), "signing waits for an answer");
+    h.get_by_label("Open Adobe Sign").click();
+    h.run_steps(3);
+    assert!(h.state().last_opened_url.as_deref().is_some_and(|u| u.starts_with(MY_APPS)), "{:?}", h.state().last_opened_url);
+    assert!(!signing_area(&h) && h.query_by_label("Open Adobe Sign").is_none(), "the prompt is gone and nothing was signed here");
+}
+
+#[test]
+fn sign_here_instead_signs_and_stops_asking() {
+    let mut h = with_document(true);
+    h.state_mut().execute("sign.certify");
+    h.run_steps(3);
+    h.get_by_label("Sign here instead").click();
+    h.run_steps(3);
+    assert!(signing_area(&h), "the held command ran");
+    assert_eq!(h.state().last_opened_url, None);
+    h.state_mut().quick_tool = pdfcraft_ui_egui::QuickTool::Select;
+    h.state_mut().execute("sign.digital");
+    h.run_steps(3);
+    assert!(signing_area(&h) && h.query_by_label("Open Adobe Sign").is_none(), "no second prompt until restart");
+}
+
+#[test]
+fn cancel_signs_nothing_and_the_default_build_never_asks() {
+    let mut h = with_document(true);
+    h.state_mut().execute("sign.digital");
+    h.run_steps(3);
+    h.get_by_label("Cancel").click();
+    h.run_steps(3);
+    assert!(!signing_area(&h) && h.state().last_opened_url.is_none());
+    let mut h = with_document(false);
+    h.state_mut().execute("sign.digital");
+    h.run_steps(3);
+    assert!(signing_area(&h) && h.query_by_label("Open Adobe Sign").is_none(), "upstream behaviour");
+}
+
+#[test]
+fn fill_and_sign_offers_request_signatures() {
+    let open = |app: &mut PdfCraftApp| {
+        app.left_open = true;
+        app.left = LeftPanel::Tool("fill_sign");
+    };
+    assert!(harness(false, open).query_by_label("Request signatures (Adobe Sign)").is_none());
+    let mut h = harness(true, open);
+    h.get_by_label("Request signatures (Adobe Sign)").click();
+    h.run_steps(2);
+    assert!(h.state().last_opened_url.as_deref().is_some_and(|u| u.starts_with(MY_APPS)));
+}

@@ -2530,3 +2530,9 @@ animation effects	Off	Вимкнено
 	field names can't contain a period: {name}	імена полів не можуть містити крапку: {name}
 	two cells would both be named {name}	дві клітинки мали б однакове ім'я {name}
 	a field named {name} already exists	поле з іменем {name} уже існує
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Для офіційних підписів використовуйте Adobe Sign
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Офіційні підписи та запити на підпис від людей поза Women for Women International оформлюються через Adobe Sign. Відкрийте Adobe Sign, увійдіть із робочим обліковим записом і завантажте туди цей PDF.
+	Open Adobe Sign	Відкрити Adobe Sign
+	Sign here instead	Усе одно підписати тут
+	Request signatures (Adobe Sign)	Запросити підписи (Adobe Sign)

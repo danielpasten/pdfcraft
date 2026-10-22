@@ -2743,3 +2743,9 @@ theme	Appearance	모양
 	field names can't contain a period: {name}	필드 이름에는 마침표를 쓸 수 없습니다: {name}
 	two cells would both be named {name}	두 셀의 이름이 모두 {name}이(가) 됩니다
 	a field named {name} already exists	{name}(이)라는 필드가 이미 있습니다
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	공식 서명에는 Adobe Sign을 사용하세요
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	공식 서명과 Women for Women International 외부 사람에게 보내는 서명 요청은 Adobe Sign으로 처리합니다. Adobe Sign을 열고 회사 계정으로 로그인한 다음 이 PDF를 업로드하세요.
+	Open Adobe Sign	Adobe Sign 열기
+	Sign here instead	그래도 여기에서 서명
+	Request signatures (Adobe Sign)	서명 요청(Adobe Sign)

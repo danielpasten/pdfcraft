@@ -173,6 +173,13 @@ fn tool_detail(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static
             );
         });
     }
+    // A workplace build sends official signatures and signature requests to Adobe Sign.
+    if app.workplace && matches!(g.id, "fill_sign" | "certificate") {
+        if widgets::pill_button(ui, tl!("Request signatures (Adobe Sign)"), true).clicked() {
+            app.open_url(crate::workplace::ADOBE_SIGN);
+        }
+        ui.add_space(8.0);
+    }
     if g.id == "measure" {
         crate::measure_ui::panel(app, ui, t);
         return;
@@ -967,7 +974,7 @@ pub fn right_panel(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
         Some(crate::sign_ui::PanelAction::ViewSigned { len, revision }) => app.view_signed_version(len, revision),
         Some(crate::sign_ui::PanelAction::Sign(field)) => {
             let page = app.views[index].current;
-            app.start_signing(page, None, Some(field), None);
+            app.sign_field(page, field);
         }
         Some(crate::sign_ui::PanelAction::ExportCertificate(c)) => {
             app.export_certificate(&c);

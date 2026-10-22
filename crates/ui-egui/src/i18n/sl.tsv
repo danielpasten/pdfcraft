@@ -2513,3 +2513,9 @@ animation effects	Off	Izklopljeni
 	field names can't contain a period: {name}	imena polj ne smejo vsebovati pike: {name}
 	two cells would both be named {name}	dve celici bi imeli enako ime {name}
 	a field named {name} already exists	polje z imenom {name} že obstaja
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Za uradne podpise uporabite Adobe Sign
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Uradni podpisi in prošnje za podpis osebam zunaj Women for Women International potekajo prek Adobe Sign. Odprite Adobe Sign, se prijavite s službenim računom in tja naložite ta PDF.
+	Open Adobe Sign	Odpri Adobe Sign
+	Sign here instead	Vseeno podpiši tukaj
+	Request signatures (Adobe Sign)	Zahtevaj podpise (Adobe Sign)

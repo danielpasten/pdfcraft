@@ -2743,3 +2743,9 @@ theme	Appearance	स्वरूप
 	field names can't contain a period: {name}	फ़ील्ड के नामों में पूर्ण विराम (.) नहीं हो सकता: {name}
 	two cells would both be named {name}	दो सेल का नाम {name} हो जाएगा
 	a field named {name} already exists	{name} नाम का फ़ील्ड पहले से मौजूद है
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	आधिकारिक हस्ताक्षरों के लिए Adobe Sign का उपयोग करें
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	आधिकारिक हस्ताक्षर, और Women for Women International के बाहर के लोगों से हस्ताक्षर के अनुरोध, Adobe Sign के माध्यम से होते हैं। Adobe Sign खोलें, अपने कार्य खाते से साइन इन करें और यह PDF वहाँ अपलोड करें।
+	Open Adobe Sign	Adobe Sign खोलें
+	Sign here instead	फिर भी यहाँ हस्ताक्षर करें
+	Request signatures (Adobe Sign)	हस्ताक्षरों का अनुरोध करें (Adobe Sign)

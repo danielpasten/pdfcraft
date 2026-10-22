@@ -2493,3 +2493,9 @@ animation effects	Off	Joaktiv
 	field names can't contain a period: {name}	emrat e fushave nuk mund të përmbajnë pikë: {name}
 	two cells would both be named {name}	dy qeliza do të kishin të dyja emrin {name}
 	a field named {name} already exists	ekziston tashmë një fushë me emrin {name}
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Përdorni Adobe Sign për nënshkrimet zyrtare
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Nënshkrimet zyrtare dhe kërkesat për nënshkrim nga persona jashtë Women for Women International bëhen përmes Adobe Sign. Hapni Adobe Sign, hyni me llogarinë e punës dhe ngarkoni atje këtë PDF.
+	Open Adobe Sign	Hap Adobe Sign
+	Sign here instead	Nënshkruaj këtu gjithsesi
+	Request signatures (Adobe Sign)	Kërko nënshkrime (Adobe Sign)

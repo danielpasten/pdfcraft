@@ -2767,3 +2767,9 @@ theme	Appearance	Aspecte
 	field names can't contain a period: {name}	els noms dels camps no poden contenir cap punt: {name}
 	two cells would both be named {name}	dues cel·les es dirien {name}
 	a field named {name} already exists	ja existeix un camp anomenat {name}
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Utilitzeu Adobe Sign per a les signatures oficials
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Les signatures oficials i les sol·licituds de signatura a persones de fora de Women for Women International es fan amb Adobe Sign. Obriu Adobe Sign, inicieu la sessió amb el compte de feina i pugeu-hi aquest PDF.
+	Open Adobe Sign	Obre Adobe Sign
+	Sign here instead	Signa aquí igualment
+	Request signatures (Adobe Sign)	Sol·licita signatures (Adobe Sign)

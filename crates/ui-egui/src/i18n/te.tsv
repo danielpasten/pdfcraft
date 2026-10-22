@@ -2417,3 +2417,9 @@ animation effects	Off	ఆఫ్
 	field names can't contain a period: {name}	ఫీల్డ్ పేర్లలో చుక్క ఉండకూడదు: {name}
 	two cells would both be named {name}	రెండు గడులకూ {name} అనే పేరు వస్తుంది
 	a field named {name} already exists	{name} అనే ఫీల్డ్ ఇప్పటికే ఉంది
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	అధికారిక సంతకాల కోసం Adobe Sign ఉపయోగించండి
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	అధికారిక సంతకాలు, Women for Women International వెలుపలి వ్యక్తుల నుండి సంతకాల అభ్యర్థనలు Adobe Sign ద్వారా జరుగుతాయి. Adobe Sign తెరిచి, మీ కార్యాలయ ఖాతాతో సైన్ ఇన్ చేసి, ఈ PDFను అక్కడ అప్‌లోడ్ చేయండి.
+	Open Adobe Sign	Adobe Sign తెరువు
+	Sign here instead	అయినా ఇక్కడే సంతకం చేయి
+	Request signatures (Adobe Sign)	సంతకాలను అభ్యర్థించు (Adobe Sign)

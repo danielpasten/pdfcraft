@@ -2815,3 +2815,9 @@ certificate	Version	Verze
 	field names can't contain a period: {name}	názvy polí nesmějí obsahovat tečku: {name}
 	two cells would both be named {name}	dvě buňky by se jmenovaly {name}
 	a field named {name} already exists	pole s názvem {name} už existuje
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Pro oficiální podpisy použijte Adobe Sign
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Oficiální podpisy a žádosti o podpis od lidí mimo Women for Women International se vyřizují přes Adobe Sign. Otevřete Adobe Sign, přihlaste se pracovním účtem a nahrajte tam toto PDF.
+	Open Adobe Sign	Otevřít Adobe Sign
+	Sign here instead	Přesto podepsat zde
+	Request signatures (Adobe Sign)	Požádat o podpisy (Adobe Sign)

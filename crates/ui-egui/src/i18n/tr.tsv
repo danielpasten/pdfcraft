@@ -2504,3 +2504,9 @@ animation effects	Off	Kapalı
 	field names can't contain a period: {name}	alan adları nokta içeremez: {name}
 	two cells would both be named {name}	iki hücrenin de adı {name} olurdu
 	a field named {name} already exists	{name} adlı bir alan zaten var
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Resmî imzalar için Adobe Sign kullanın
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Resmî imzalar ve Women for Women International dışındaki kişilerden imza talepleri Adobe Sign üzerinden yapılır. Adobe Sign'ı açın, iş hesabınızla oturum açın ve bu PDF'yi oraya yükleyin.
+	Open Adobe Sign	Adobe Sign'ı aç
+	Sign here instead	Yine de burada imzala
+	Request signatures (Adobe Sign)	İmza iste (Adobe Sign)

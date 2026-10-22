@@ -21,6 +21,7 @@ fn dialogs(app: &mut PdfCraftApp, ctx: &egui::Context) {
     link_prompt(app, ctx);
     remote_link_prompt(app, ctx);
     full_screen_prompt(app, ctx);
+    adobe_sign_prompt(app, ctx);
     crate::updates::dialog(app, ctx);
     if app.dialog != Some(Dialog::WordCount) {
         app.word_count_draft.cancel();
@@ -1724,6 +1725,48 @@ fn full_screen_prompt(app: &mut PdfCraftApp, ctx: &egui::Context) {
     }
     if let Some(allow) = choice {
         app.resolve_full_screen_prompt(ctx, allow);
+    }
+}
+
+/// A workplace build's signing prompt: official signatures go through Adobe Sign (`workplace`).
+fn adobe_sign_prompt(app: &mut PdfCraftApp, ctx: &egui::Context) {
+    use crate::workplace::SignChoice;
+    if app.pending_sign.is_none() {
+        return;
+    }
+    let t = Tokens::get(ctx);
+    let mut choice = None;
+    let modal = widgets::show_modal(ctx, "adobe_sign_prompt", |ui| {
+        ui.set_width(480.0);
+        ui.horizontal(|ui| {
+            ui.add(crate::icons::image("signature", 22.0, t.accent));
+            ui.label(egui::RichText::new(tl!("Use Adobe Sign for official signatures")).font(theme::semibold(16.0)));
+        });
+        ui.add_space(6.0);
+        ui.add(
+            egui::Label::new(tl!(
+                "Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there."
+            ))
+            .wrap(),
+        );
+        ui.add_space(14.0);
+        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+            if widgets::pill_button(ui, tl!("Open Adobe Sign"), true).clicked() {
+                choice = Some(SignChoice::AdobeSign);
+            }
+            if widgets::pill_button(ui, tl!("Sign here instead"), false).clicked() {
+                choice = Some(SignChoice::SignHere);
+            }
+            if widgets::pill_button(ui, tl!("Cancel"), false).clicked() {
+                choice = Some(SignChoice::Cancel);
+            }
+        });
+    });
+    if choice.is_none() && modal.should_close() {
+        choice = Some(SignChoice::Cancel);
+    }
+    if let Some(choice) = choice {
+        app.resolve_adobe_sign(choice);
     }
 }
 

@@ -2767,3 +2767,9 @@ theme	Appearance	Aspect
 	field names can't contain a period: {name}	numele câmpurilor nu pot conține punct: {name}
 	two cells would both be named {name}	două celule s-ar numi amândouă {name}
 	a field named {name} already exists	există deja un câmp numit {name}
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Folosiți Adobe Sign pentru semnăturile oficiale
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Semnăturile oficiale și solicitările de semnătură către persoane din afara Women for Women International se fac prin Adobe Sign. Deschideți Adobe Sign, conectați-vă cu contul de serviciu și încărcați acolo acest PDF.
+	Open Adobe Sign	Deschide Adobe Sign
+	Sign here instead	Semnează aici totuși
+	Request signatures (Adobe Sign)	Solicită semnături (Adobe Sign)
