@@ -233,11 +233,14 @@ fn tool_detail(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static
                 };
                 let font = theme::semibold(9.5);
                 let chip_label = tl!(chip).to_string();
-                let w = crate::widgets::text_width(ui, &chip_label, &font);
+                // A workplace build shows only what works, so a Ready chip on every row says nothing.
+                let w = if app.workplace { 0.0 } else { crate::widgets::text_width(ui, &chip_label, &font) };
                 let r = Rect::from_center_size(body.right_center() - vec2(w / 2.0 + 10.0, 0.0), vec2(w + 10.0, 16.0));
                 row_label(ui, tl!(item.label), theme::regular(13.0), fg, body.left_center() + vec2(34.0, 0.0), r.left() - body.left() - 42.0);
-                ui.painter().rect_filled(r, CornerRadius::same(4), fill);
-                ui.painter().text(r.center(), Align2::CENTER_CENTER, chip_label, font, cfg);
+                if !app.workplace {
+                    ui.painter().rect_filled(r, CornerRadius::same(4), fill);
+                    ui.painter().text(r.center(), Align2::CENTER_CENTER, chip_label, font, cfg);
+                }
                 // The command id helps whoever scripts the app; a workplace build keeps it to the name.
                 let tip = if app.workplace { tl!(item.label).to_string() } else { format!("{} — {}", tl!(item.label), item.command) };
                 let resp = theme::hand(resp).on_hover_text(tip);
