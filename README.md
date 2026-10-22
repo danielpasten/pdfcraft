@@ -462,11 +462,10 @@ MSI of the same version replace the installed one without asking. Two different 
 be told apart by version, so if your deployment tool checks the file, pin its SHA-256 from
 `SHA256SUMS.txt` (`Get-FileHash <file> -Algorithm SHA256`).
 
-**Signing identities.** The Windows MSIs and both executables are signed through Azure Trusted
-Signing with a certificate issued to `Learning Machines Inc` (Atlanta, Georgia, US). The macOS app
-and command-line tool are signed with the Developer ID `Learning Machines LLC (DJ6XS33FX8)` and
-notarized. The MSI's manufacturer, shown as the publisher in Installed apps, is
-`Learning Machines LLC`.
+**Publisher and signing.** This build's MSI and executables name `Women for Women International`
+as their publisher (shown in Installed apps) and have their own upgrade code, so they never
+replace or get replaced by upstream PdfCraft. `packaging/windows/sign.ps1` signs them when signing
+material is configured (a certificate or Azure Trusted Signing); without it the build is unsigned.
 
 ### macOS
 

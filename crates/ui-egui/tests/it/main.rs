@@ -71,4 +71,5 @@ mod ui;
 mod updates;
 mod view;
 mod viewer;
+mod workplace;
 mod xfa;

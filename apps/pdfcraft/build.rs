@@ -24,6 +24,7 @@ fn main() {
         .set_manifest(windows_manifest::WINDOWS_MANIFEST)
         .set("ProductName", "PdfCraft")
         .set("FileDescription", "PdfCraft PDF workbench")
+        .set("CompanyName", "Women for Women International")
         .set("LegalCopyright", "Copyright (c) the PdfCraft contributors. MIT OR Apache-2.0.")
         .set("OriginalFilename", "pdfcraft.exe")
         .set("InternalName", "pdfcraft");

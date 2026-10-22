@@ -1159,19 +1159,22 @@ fn dialogs(app: &mut PdfCraftApp, ctx: &egui::Context) {
                 });
             }
             Dialog::About => {
-                // Tabs About · Contributors · Models (craftrules standards/contributors.md).
+                // Tabs About · Contributors · Models (craftrules standards/contributors.md). A
+                // workplace build shows About alone: the credits live in NOTICE and ATTRIBUTION.md.
                 let tab_id = egui::Id::new("about_tab");
-                let mut tab = ui.data_mut(|d| d.get_temp::<u8>(tab_id)).unwrap_or(0);
-                ui.horizontal_wrapped(|ui| {
-                    for (i, label) in ["About", "Contributors", "Models"].into_iter().enumerate() {
-                        let i = i as u8;
-                        if widgets::mode_tab(ui, tl!(label), tab == i).clicked() {
-                            tab = i;
+                let mut tab = if app.workplace { 0 } else { ui.data_mut(|d| d.get_temp::<u8>(tab_id)).unwrap_or(0) };
+                if !app.workplace {
+                    ui.horizontal_wrapped(|ui| {
+                        for (i, label) in ["About", "Contributors", "Models"].into_iter().enumerate() {
+                            let i = i as u8;
+                            if widgets::mode_tab(ui, tl!(label), tab == i).clicked() {
+                                tab = i;
+                            }
                         }
-                    }
-                });
-                ui.data_mut(|d| d.insert_temp(tab_id, tab));
-                ui.separator();
+                    });
+                    ui.data_mut(|d| d.insert_temp(tab_id, tab));
+                    ui.separator();
+                }
                 match tab {
                     1 => crate::credits::contributors_ui(ui),
                     2 => crate::credits::models_ui(ui),
@@ -1185,16 +1188,18 @@ fn dialogs(app: &mut PdfCraftApp, ctx: &egui::Context) {
                         });
                         ui.add_space(6.0);
                         ui.label(tl!("A clean-room, open-source PDF application written in Rust. MIT OR Apache-2.0."));
-                        ui.label(
-                            egui::RichText::new(
-                                "Rendering: hayro (bootstrap) · UI: egui · Icons: Lucide (ISC) · Fonts: Inter, JetBrains Mono, Dancing Script (OFL)",
-                            )
-                            .color(t.text_muted)
-                            .small(),
-                        );
-                        ui.add_space(12.0);
-                        if let Some(cmd) = widgets::community_links(ui) {
-                            link_command = Some(cmd);
+                        if !app.workplace {
+                            ui.label(
+                                egui::RichText::new(
+                                    "Rendering: hayro (bootstrap) · UI: egui · Icons: Lucide (ISC) · Fonts: Inter, JetBrains Mono, Dancing Script (OFL)",
+                                )
+                                .color(t.text_muted)
+                                .small(),
+                            );
+                            ui.add_space(12.0);
+                            if let Some(cmd) = widgets::community_links(ui) {
+                                link_command = Some(cmd);
+                            }
                         }
                     }
                 }

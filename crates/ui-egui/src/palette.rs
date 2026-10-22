@@ -52,7 +52,7 @@ pub fn show(app: &mut PdfCraftApp, ctx: &egui::Context) {
     let q = pdfcraft_render::text::fold_case(app.palette_query.trim());
     let mut hits: Vec<(usize, Hit)> = Vec::new();
     let active = app.active_ids().map(|(_, id)| id);
-    for spec in pdfcraft_engine::commands::COMMANDS {
+    for spec in pdfcraft_engine::commands::COMMANDS.iter().filter(|c| !app.command_hidden(c.id)) {
         let label = pdfcraft_engine::commands::current_label(spec, &app.session, active);
         let translated = crate::i18n::command_label(&label);
         if let Some(s) = score(&translated, &q).or_else(|| score(&label, &q)).or_else(|| score(spec.id, &q).map(|s| s + 50)) {
@@ -72,7 +72,7 @@ pub fn show(app: &mut PdfCraftApp, ctx: &egui::Context) {
             ));
         }
     }
-    for g in TOOL_GROUPS {
+    for g in TOOL_GROUPS.iter().filter(|g| app.tool_group_shown(g)) {
         if let Some(s) = score(tl!(g.label), &q).or_else(|| score(g.label, &q)) {
             hits.push((
                 s,
@@ -82,12 +82,12 @@ pub fn show(app: &mut PdfCraftApp, ctx: &egui::Context) {
                     detail: tl!("Tool").into(),
                     icon: g.icon,
                     command: None,
-                    ready: g.availability == Availability::Ready,
+                    ready: app.group_availability(g) == Availability::Ready,
                 },
             ));
         }
         for sec in g.sections {
-            for i in sec.items {
+            for i in sec.items.iter().filter(|i| app.tool_item_shown(i)) {
                 if pdfcraft_engine::commands::command(i.command).is_some() {
                     continue; // listed above as a command
                 }

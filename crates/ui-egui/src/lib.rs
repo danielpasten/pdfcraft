@@ -152,6 +152,7 @@ mod widgets;
 pub mod window_controls;
 #[cfg(not(target_arch = "wasm32"))]
 pub mod window_state;
+mod workplace;
 
 #[cfg(all(test, not(target_arch = "wasm32")))]
 mod open_worker_tests;
@@ -569,6 +570,9 @@ pub struct PdfCraftApp {
     pub dialog: Option<Dialog>,
     /// How to ask for the latest release (the desktop app sets it; see `updates`).
     pub update_source: Option<updates::UpdateSource>,
+    /// A build for managed work computers (the desktop app turns it on; see `workplace`): only
+    /// finished tools, and no AI placeholders, developer credits, project links or update check.
+    pub workplace: bool,
     pub(crate) updates: updates::Updates,
     /// Lists the Print dialog's printers in the background (the desktop app sets it; see
     /// [`PrinterSource`]).
@@ -976,6 +980,7 @@ impl PdfCraftApp {
             fill_text_size: fill_sign::TEXT_SIZE,
             dialog: None,
             update_source: None,
+            workplace: false,
             updates: updates::Updates::default(),
             printer_source: None,
             options_source: None,

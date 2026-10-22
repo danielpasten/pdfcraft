@@ -44,6 +44,7 @@ pub(crate) fn panel(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens) {
     let Some(doc) = app.session.get(id) else { return };
     let info = &doc.info;
     let editable = doc.allows_assembly();
+    let workplace = app.workplace;
     let n = info.pages.len();
     let mut act: Option<Act> = None;
     let mut back = false;
@@ -147,6 +148,10 @@ pub(crate) fn panel(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens) {
             ("file-text", "Page templates", Availability::Later, None),
             ("printer", "Print pages", Availability::Ready, Some("print.dialog")),
         ] {
+            // A workplace build lists only what works.
+            if workplace && availability == Availability::Later {
+                continue;
+            }
             if row(ui, t, icon, tl!(label), availability, false).clicked()
                 && let Some(command) = command
             {
@@ -157,7 +162,9 @@ pub(crate) fn panel(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens) {
         if row(ui, t, "tag", tl!("Page labels"), Availability::Ready, false).clicked() {
             act = Some(Act::Command("page.number"));
         }
-        row(ui, t, "info", tl!("Page properties"), Availability::Later, false);
+        if !workplace {
+            row(ui, t, "info", tl!("Page properties"), Availability::Later, false);
+        }
     });
 
     if close {
