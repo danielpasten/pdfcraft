@@ -1343,7 +1343,6 @@
 	Select all pages (Organize)	Selecionar todas as páginas (Organizar)
 	Version {v}	Versão {v}
 	A clean-room, open-source PDF application written in Rust. MIT OR Apache-2.0.	Um aplicativo PDF de código aberto e clean-room escrito em Rust. MIT OU Apache-2.0.
-	Part of	Parte de
 	Summarize Options	Opções de resumo
 	Choose a layout:	Escolha um layout:
 	Comments only	Somente comentários
@@ -1743,13 +1742,7 @@
 	Split document…	Dividir documento…
 	Number pages…	Numerar páginas…
 	Keyboard shortcuts	Atalhos de teclado
-	Join the ArtCraft Discord	Entrar no Discord do ArtCraft
-	Join the ArtCraft community	Entrar na comunidade ArtCraft
-	Get help, share feedback and follow development on Discord.	Obtenha ajuda, compartilhe comentários e acompanhe o desenvolvimento no Discord.
-	Join our Discord	Entrar em nosso Discord
-	PdfCraft web page	Página da Web do PdfCraft
 	PdfCraft on GitHub	PdfCraft no GitHub
-	ArtCraft website	Site do ArtCraft
 	Check for updates…	Verificar atualizações…
 	About PdfCraft	Sobre o PdfCraft
 	JavaScript console…	Console JavaScript…
@@ -2800,3 +2793,9 @@ theme	Appearance	Aparência
 	a table has 1 to {max} columns	uma tabela tem de 1 a {max} colunas
 	the first row number can be at most {max}	o número da primeira linha pode ser no máximo {max}
 	the area, the spacing and the column widths must be numbers, the spacing 0 or more and each width more than 0	a área, o espaçamento e as larguras das colunas devem ser números, o espaçamento 0 ou mais e cada largura maior que 0
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	Use o Adobe Sign para assinaturas oficiais
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	Assinaturas oficiais e pedidos de assinatura a pessoas de fora da Women for Women International são feitos pelo Adobe Sign. Abra o Adobe Sign, entre com sua conta de trabalho e envie este PDF por lá.
+	Open Adobe Sign	Abrir o Adobe Sign
+	Sign here instead	Assinar aqui mesmo assim
+	Request signatures (Adobe Sign)	Solicitar assinaturas (Adobe Sign)

@@ -21,6 +21,7 @@ fn dialogs(app: &mut PdfCraftApp, ctx: &egui::Context) {
     link_prompt(app, ctx);
     remote_link_prompt(app, ctx);
     full_screen_prompt(app, ctx);
+    adobe_sign_prompt(app, ctx);
     crate::updates::dialog(app, ctx);
     if app.dialog != Some(Dialog::WordCount) {
         app.word_count_draft.cancel();
@@ -1159,25 +1160,28 @@ fn dialogs(app: &mut PdfCraftApp, ctx: &egui::Context) {
                 });
             }
             Dialog::About => {
-                // Tabs About · Contributors · Models (craftrules standards/contributors.md).
+                // Tabs About · Contributors · Models (craftrules standards/contributors.md). A
+                // workplace build shows About alone: the credits live in NOTICE and ATTRIBUTION.md.
                 let tab_id = egui::Id::new("about_tab");
-                let mut tab = ui.data_mut(|d| d.get_temp::<u8>(tab_id)).unwrap_or(0);
-                ui.horizontal_wrapped(|ui| {
-                    for (i, label) in ["About", "Contributors", "Models"].into_iter().enumerate() {
-                        let i = i as u8;
-                        if widgets::mode_tab(ui, tl!(label), tab == i).clicked() {
-                            tab = i;
+                let mut tab = if app.workplace { 0 } else { ui.data_mut(|d| d.get_temp::<u8>(tab_id)).unwrap_or(0) };
+                if !app.workplace {
+                    ui.horizontal_wrapped(|ui| {
+                        for (i, label) in ["About", "Contributors", "Models"].into_iter().enumerate() {
+                            let i = i as u8;
+                            if widgets::mode_tab(ui, tl!(label), tab == i).clicked() {
+                                tab = i;
+                            }
                         }
-                    }
-                });
-                ui.data_mut(|d| d.insert_temp(tab_id, tab));
-                ui.separator();
+                    });
+                    ui.data_mut(|d| d.insert_temp(tab_id, tab));
+                    ui.separator();
+                }
                 match tab {
                     1 => crate::credits::contributors_ui(ui),
                     2 => crate::credits::models_ui(ui),
                     _ => {
                         ui.horizontal(|ui| {
-                            widgets::artcraft_mark(ui, 40.0);
+                            widgets::app_icon(ui, 40.0);
                             ui.vertical(|ui| {
                                 ui.label(egui::RichText::new("PdfCraft").font(theme::semibold(20.0)));
                                 ui.label(crate::i18n::fmt(tl!("Version {v}"), &[("v", &pdfcraft_engine::build_info::version())]));
@@ -1185,21 +1189,18 @@ fn dialogs(app: &mut PdfCraftApp, ctx: &egui::Context) {
                         });
                         ui.add_space(6.0);
                         ui.label(tl!("A clean-room, open-source PDF application written in Rust. MIT OR Apache-2.0."));
-                        ui.label(
-                            egui::RichText::new(
-                                "Rendering: hayro (bootstrap) · UI: egui · Icons: Lucide (ISC) · Fonts: Inter, JetBrains Mono, Dancing Script (OFL)",
-                            )
-                            .color(t.text_muted)
-                            .small(),
-                        );
-                        ui.add_space(12.0);
-                        ui.horizontal(|ui| {
-                            ui.label(egui::RichText::new(tl!("Part of")).color(t.text_muted));
-                            widgets::artcraft_logo(ui, 16.0);
-                        });
-                        ui.add_space(6.0);
-                        if let Some(cmd) = widgets::community_links(ui) {
-                            link_command = Some(cmd);
+                        if !app.workplace {
+                            ui.label(
+                                egui::RichText::new(
+                                    "Rendering: hayro (bootstrap) · UI: egui · Icons: Lucide (ISC) · Fonts: Inter, JetBrains Mono, Dancing Script (OFL)",
+                                )
+                                .color(t.text_muted)
+                                .small(),
+                            );
+                            ui.add_space(12.0);
+                            if let Some(cmd) = widgets::community_links(ui) {
+                                link_command = Some(cmd);
+                            }
                         }
                     }
                 }
@@ -1724,6 +1725,48 @@ fn full_screen_prompt(app: &mut PdfCraftApp, ctx: &egui::Context) {
     }
     if let Some(allow) = choice {
         app.resolve_full_screen_prompt(ctx, allow);
+    }
+}
+
+/// A workplace build's signing prompt: official signatures go through Adobe Sign (`workplace`).
+fn adobe_sign_prompt(app: &mut PdfCraftApp, ctx: &egui::Context) {
+    use crate::workplace::SignChoice;
+    if app.pending_sign.is_none() {
+        return;
+    }
+    let t = Tokens::get(ctx);
+    let mut choice = None;
+    let modal = widgets::show_modal(ctx, "adobe_sign_prompt", |ui| {
+        ui.set_width(480.0);
+        ui.horizontal(|ui| {
+            ui.add(crate::icons::image("signature", 22.0, t.accent));
+            ui.label(egui::RichText::new(tl!("Use Adobe Sign for official signatures")).font(theme::semibold(16.0)));
+        });
+        ui.add_space(6.0);
+        ui.add(
+            egui::Label::new(tl!(
+                "Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there."
+            ))
+            .wrap(),
+        );
+        ui.add_space(14.0);
+        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+            if widgets::pill_button(ui, tl!("Open Adobe Sign"), true).clicked() {
+                choice = Some(SignChoice::AdobeSign);
+            }
+            if widgets::pill_button(ui, tl!("Sign here instead"), false).clicked() {
+                choice = Some(SignChoice::SignHere);
+            }
+            if widgets::pill_button(ui, tl!("Cancel"), false).clicked() {
+                choice = Some(SignChoice::Cancel);
+            }
+        });
+    });
+    if choice.is_none() && modal.should_close() {
+        choice = Some(SignChoice::Cancel);
+    }
+    if let Some(choice) = choice {
+        app.resolve_adobe_sign(choice);
     }
 }
 

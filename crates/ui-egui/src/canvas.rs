@@ -4309,7 +4309,7 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
             }
         } else {
             let page = app.views[index].current;
-            app.start_signing(page, None, Some(field), None);
+            app.sign_field(page, field);
         }
     }
     app.quick_tool = tool;

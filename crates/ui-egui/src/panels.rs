@@ -28,8 +28,8 @@ pub fn left_panel(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
             _ if app.active.is_some() && crate::organize_panel::showing(app) => crate::organize_panel::panel(app, ui, &t),
             LeftPanel::AllTools => all_tools(app, ui, &t),
             LeftPanel::Tool(id) => match catalog::group(id) {
-                Some(g) => tool_detail(app, ui, &t, g),
-                None => app.left = LeftPanel::AllTools,
+                Some(g) if app.tool_group_shown(g) => tool_detail(app, ui, &t, g),
+                _ => app.left = LeftPanel::AllTools,
             },
             LeftPanel::CalculationOrder => crate::calc_order_ui::panel(app, ui, &t),
         },
@@ -68,9 +68,10 @@ fn all_tools(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens) {
         app.left_open = false;
     }
     egui::ScrollArea::vertical().auto_shrink([false, false]).show(ui, |ui| {
-        let shown = if app.all_tools_expanded { TOOL_GROUPS.len() } else { COLLAPSED_TOOLS.min(TOOL_GROUPS.len()) };
-        for g in &TOOL_GROUPS[..shown] {
-            if tool_row(ui, t, g).clicked() {
+        let groups: Vec<&'static ToolGroup> = TOOL_GROUPS.iter().filter(|g| app.tool_group_shown(g)).collect();
+        let shown = if app.all_tools_expanded { groups.len() } else { COLLAPSED_TOOLS.min(groups.len()) };
+        for g in groups.into_iter().take(shown) {
+            if tool_row(ui, t, g, app.group_availability(g)).clicked() {
                 app.select_tool(g.id);
             }
         }
@@ -101,14 +102,15 @@ fn row_label(ui: &mut egui::Ui, text: &str, font: egui::FontId, color: Color32, 
     elided
 }
 
-fn tool_row(ui: &mut egui::Ui, t: &Tokens, g: &ToolGroup) -> egui::Response {
+/// `availability` is how the group presents itself in this build ([`PdfCraftApp::group_availability`]).
+fn tool_row(ui: &mut egui::Ui, t: &Tokens, g: &ToolGroup, availability: Availability) -> egui::Response {
     let (rect, resp) = ui.allocate_exact_size(vec2(ui.available_width(), 34.0), Sense::click());
     resp.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::Button, true, tl!(g.label)));
     let press = theme::Press::track(ui, &resp);
     press.wash(ui, rect, 6, false);
     let body = rect.translate(press.offset());
     icons::paint(ui, Rect::from_min_size(body.min + vec2(6.0, 7.0), vec2(20.0, 20.0)), g.icon, 19.0, hue(g));
-    let right_reserved = match (g.badge, g.availability) {
+    let right_reserved = match (g.badge, availability) {
         (Some(b), _) => ui.fonts_mut(|f| f.layout_no_wrap(tl!(b).to_owned(), theme::semibold(9.5), Color32::WHITE).size().x) + 26.0,
         (None, Availability::Planned(m)) if resp.hovered() => {
             let hint = format!("{} · {m}", tl!("Planned"));
@@ -118,7 +120,7 @@ fn tool_row(ui: &mut egui::Ui, t: &Tokens, g: &ToolGroup) -> egui::Response {
     };
     let clipped =
         row_label(ui, tl!(g.label), theme::regular(13.5), t.text, body.left_center() + vec2(36.0, 0.0), rect.width() - 36.0 - right_reserved);
-    match (g.badge, g.availability) {
+    match (g.badge, availability) {
         (Some(b), _) => {
             let font = theme::semibold(9.5);
             let badge = tl!(b);
@@ -139,7 +141,7 @@ fn tool_row(ui: &mut egui::Ui, t: &Tokens, g: &ToolGroup) -> egui::Response {
         }
         _ => {}
     }
-    let tip = match g.availability {
+    let tip = match availability {
         Availability::Ready => tl!("Available").to_string(),
         Availability::Planned(m) => format!("{} {m} — {}", tl!("Planned for milestone"), tl!("open to see what it will include")),
         Availability::Provider => tl!("Optional: needs an AI provider you configure").into(),
@@ -161,7 +163,7 @@ fn tool_detail(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static
     if close {
         app.left_open = false;
     }
-    if let Availability::Planned(m) = g.availability {
+    if let Availability::Planned(m) = app.group_availability(g) {
         egui::Frame::NONE.fill(t.accent_soft).corner_radius(CornerRadius::same(8)).inner_margin(egui::Margin::same(10)).show(ui, |ui| {
             ui.set_width(ui.available_width());
             ui.label(
@@ -170,6 +172,13 @@ fn tool_detail(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static
                     .font(theme::regular(12.0)),
             );
         });
+    }
+    // A workplace build sends official signatures and signature requests to Adobe Sign.
+    if app.workplace && matches!(g.id, "fill_sign" | "certificate") {
+        if widgets::pill_button(ui, tl!("Request signatures (Adobe Sign)"), true).clicked() {
+            app.open_url(crate::workplace::ADOBE_SIGN);
+        }
+        ui.add_space(8.0);
     }
     if g.id == "measure" {
         crate::measure_ui::panel(app, ui, t);
@@ -201,8 +210,12 @@ fn tool_detail(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static
     let list_h = if footer { (ui.available_height() - 52.0).max(80.0) } else { ui.available_height() };
     egui::ScrollArea::vertical().auto_shrink([false, false]).max_height(list_h).show(ui, |ui| {
         for s in g.sections {
+            let items: Vec<&ToolItem> = s.items.iter().filter(|i| app.tool_item_shown(i)).collect();
+            if items.is_empty() {
+                continue;
+            }
             widgets::section_title(ui, tl!(s.title));
-            for item in s.items {
+            for item in items {
                 if g.id == "fill_sign" && (item.command.starts_with("sign.fill.signature") || item.command.starts_with("sign.fill.initials")) {
                     continue;
                 }
@@ -227,12 +240,17 @@ fn tool_detail(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static
                 };
                 let font = theme::semibold(9.5);
                 let chip_label = tl!(chip).to_string();
-                let w = crate::widgets::text_width(ui, &chip_label, &font);
+                // A workplace build shows only what works, so a Ready chip on every row says nothing.
+                let w = if app.workplace { 0.0 } else { crate::widgets::text_width(ui, &chip_label, &font) };
                 let r = Rect::from_center_size(body.right_center() - vec2(w / 2.0 + 10.0, 0.0), vec2(w + 10.0, 16.0));
                 row_label(ui, tl!(item.label), theme::regular(13.0), fg, body.left_center() + vec2(34.0, 0.0), r.left() - body.left() - 42.0);
-                ui.painter().rect_filled(r, CornerRadius::same(4), fill);
-                ui.painter().text(r.center(), Align2::CENTER_CENTER, chip_label, font, cfg);
-                let resp = theme::hand(resp).on_hover_text(format!("{} — {}", tl!(item.label), item.command));
+                if !app.workplace {
+                    ui.painter().rect_filled(r, CornerRadius::same(4), fill);
+                    ui.painter().text(r.center(), Align2::CENTER_CENTER, chip_label, font, cfg);
+                }
+                // The command id helps whoever scripts the app; a workplace build keeps it to the name.
+                let tip = if app.workplace { tl!(item.label).to_string() } else { format!("{} — {}", tl!(item.label), item.command) };
+                let resp = theme::hand(resp).on_hover_text(tip);
                 // An entry with further commands opens a menu; its caret goes before the chip.
                 if item.actions.is_empty() {
                     if resp.clicked() {
@@ -353,8 +371,13 @@ fn edit_panel(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static 
         }
 
         widgets::section_title(ui, tl!("Add content"));
-        let content: Vec<_> =
-            g.sections.iter().filter(|s| s.title == "Add content").flat_map(|s| s.items.iter()).filter(|i| i.command != "edit.edit_text").collect();
+        let content: Vec<_> = g
+            .sections
+            .iter()
+            .filter(|s| s.title == "Add content")
+            .flat_map(|s| s.items.iter())
+            .filter(|i| i.command != "edit.edit_text" && app.tool_item_shown(i))
+            .collect();
         let more_id = egui::Id::new("edit_panel_more");
         let more = ui.data(|d| d.get_temp::<bool>(more_id)).unwrap_or(false);
         let shown = if more { content.len() } else { EDIT_CONTENT_SHOWN.min(content.len()) };
@@ -385,8 +408,8 @@ fn edit_panel(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static 
         }
 
         widgets::section_title(ui, tl!("Other options"));
-        for other in EDIT_OTHER_TOOLS.iter().filter_map(|id| catalog::group(id)) {
-            if edit_row(ui, t, other.icon, tl!(other.label), other.availability).clicked() {
+        for other in EDIT_OTHER_TOOLS.iter().filter_map(|id| catalog::group(id)).filter(|g| app.tool_group_shown(g)) {
+            if edit_row(ui, t, other.icon, tl!(other.label), app.group_availability(other)).clicked() {
                 tool = Some(other.id);
             }
         }
@@ -951,7 +974,7 @@ pub fn right_panel(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
         Some(crate::sign_ui::PanelAction::ViewSigned { len, revision }) => app.view_signed_version(len, revision),
         Some(crate::sign_ui::PanelAction::Sign(field)) => {
             let page = app.views[index].current;
-            app.start_signing(page, None, Some(field), None);
+            app.sign_field(page, field);
         }
         Some(crate::sign_ui::PanelAction::ExportCertificate(c)) => {
             app.export_certificate(&c);

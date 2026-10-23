@@ -28,26 +28,6 @@ pub fn show(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
                     .color(t.text_muted)
                     .font(theme::regular(14.0)),
             );
-            ui.add_space(14.0);
-            egui::Frame::NONE
-                .fill(t.card)
-                .stroke(Stroke::new(1.0, t.border))
-                .corner_radius(CornerRadius::same(12))
-                .inner_margin(egui::Margin::same(14))
-                .show(ui, |ui| {
-                    ui.set_width(ui.available_width());
-                    ui.horizontal(|ui| {
-                        widgets::artcraft_mark(ui, 28.0);
-                        ui.vertical(|ui| {
-                            ui.label(egui::RichText::new(tl!("Join the ArtCraft community")).font(theme::semibold(15.0)));
-                            ui.label(egui::RichText::new(tl!("Get help, share feedback and follow development on Discord.")).color(t.text_muted));
-                        });
-                    });
-                    ui.add_space(8.0);
-                    if let Some(cmd) = widgets::community_links(ui) {
-                        app.execute(cmd);
-                    }
-                });
             ui.add_space(22.0);
 
             egui::Frame::NONE
@@ -62,7 +42,7 @@ pub fn show(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
                     ui.horizontal_wrapped(|ui| {
                         ui.spacing_mut().item_spacing = vec2(14.0, 14.0);
                         for id in RECOMMENDED {
-                            let Some(g) = catalog::group(id) else { continue };
+                            let Some(g) = catalog::group(id).filter(|g| app.tool_group_shown(g)) else { continue };
                             let (rect, resp) = ui.allocate_exact_size(vec2(190.0, 104.0), Sense::click());
                             resp.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::Button, true, tl!(g.label)));
                             let press = theme::Press::track(ui, &resp);
@@ -78,10 +58,13 @@ pub fn show(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
                             let title = ui.fonts_mut(|f| f.layout_job(title_job));
                             let title_elided = title.elided;
                             ui.painter().galley(body.min + vec2(44.0, 25.0 - title.size().y * 0.5), title, t.text);
+                            // The first section with an entry this build shows.
                             let blurb = g
                                 .sections
-                                .first()
-                                .map(|s| s.items.iter().take(3).map(|i| tl!(i.label)).collect::<Vec<_>>().join(" · "))
+                                .iter()
+                                .map(|s| s.items.iter().filter(|i| app.tool_item_shown(i)).take(3).map(|i| tl!(i.label)).collect::<Vec<_>>())
+                                .find(|labels| !labels.is_empty())
+                                .map(|labels| labels.join(" · "))
                                 .unwrap_or_default();
                             // Fixed-height cards must leave room for their action in every language.
                             let mut job = egui::text::LayoutJob::simple(blurb.clone(), theme::regular(11.5), t.text_muted, body.width() - 28.0);
@@ -204,12 +187,15 @@ pub fn show(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
             if clear {
                 app.execute("file.clear_recent");
             }
-            ui.add_space(20.0);
-            widgets::section_title(ui, tl!("Privacy"));
-            ui.label(
-                egui::RichText::new(tl!("PdfCraft works offline. No telemetry, no account, and no cloud processing unless you add a provider."))
-                    .color(t.text_muted),
-            );
+            // A workplace build has no provider to add, and its privacy terms are the employer's.
+            if !app.workplace {
+                ui.add_space(20.0);
+                widgets::section_title(ui, tl!("Privacy"));
+                ui.label(
+                    egui::RichText::new(tl!("PdfCraft works offline. No telemetry, no account, and no cloud processing unless you add a provider."))
+                        .color(t.text_muted),
+                );
+            }
         });
     });
 }

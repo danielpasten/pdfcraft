@@ -3,7 +3,8 @@
 //! ```text
 //! cargo run -p pdfcraft-ui-egui --example shot -- out.png [file.pdf] [--size 1440x900] [--scale 2] [--page 3 --panel pages …]
 //! ```
-//! `--width N` downscales the image to N pixels wide (README screenshots). Any other
+//! `--width N` downscales the image to N pixels wide (README screenshots). `--workplace on`
+//! shows the workplace build (`PdfCraftApp::workplace`), as the desktop app runs. Any other
 //! `--key value` pair is passed to `PdfCraftApp::set_option`
 //! (the same verbs as the desktop app's command-line flags and the future control channel).
 
@@ -18,6 +19,7 @@ fn main() -> Result<(), String> {
     let (mut file, mut opts) = (None, Vec::new());
     let (mut size, mut scale) = (egui::vec2(1440.0, 900.0), 2.0f32);
     let mut width: Option<u32> = None;
+    let mut workplace = false;
     while let Some(a) = args.next() {
         match a.strip_prefix("--") {
             Some("size") => {
@@ -26,6 +28,7 @@ fn main() -> Result<(), String> {
                 size = egui::vec2(w.parse().map_err(|_| "bad width")?, h.parse().map_err(|_| "bad height")?);
             }
             Some("scale") => scale = args.next().and_then(|v| v.parse().ok()).ok_or("bad --scale")?,
+            Some("workplace") => workplace = args.next().is_some_and(|v| v == "on"),
             Some("width") => width = Some(args.next().and_then(|v| v.parse().ok()).ok_or("bad --width")?),
             Some(k) => opts.push((k.to_string(), args.next().unwrap_or_default())),
             None => file = Some(a),
@@ -33,6 +36,7 @@ fn main() -> Result<(), String> {
     }
     let mut harness = Harness::builder().with_size(size).with_pixels_per_point(scale).build_eframe(move |_cc| {
         let mut app = PdfCraftApp::new();
+        app.workplace = workplace;
         if let Some(f) = &file {
             let bytes = std::fs::read(f).unwrap_or_default();
             let name = std::path::Path::new(f).file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default();

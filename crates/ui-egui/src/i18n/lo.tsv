@@ -95,7 +95,6 @@
 	Side panels	ແຜງດ້ານຂ້າງ
 	Enable Acrobat JavaScript	ເປີດໃຊ້ງານ Acrobat JavaScript
 	OK	ຕົກລົງ
-	Join our Discord	ເຂົ້າຮ່ວມ Discord ຂອງພວກເຮົາ
 	Close	ປິດ
 	Next / previous match	ຜົນການຄົ້ນຫາ ຖັດໄປ / ກ່ອນໜ້າ
 	Copy selected text	ສຳເນົາຂໍ້ຄວາມທີ່ເລືອກ
@@ -165,8 +164,6 @@
 	Current page — type a page number or label (such as iv) and press Enter	ໜ້າປັດຈຸບັນ — ພິມໝາຍເລກໜ້າ ຫຼື ປ້າຍຊື່ (ເຊັ່ນ: iv) ແລ້ວກົດ Enter
 	Welcome to PdfCraft	ຍິນດີຕ້ອນຮັບສູ່ PdfCraft
 	An open-source PDF workbench — local, private, and scriptable.	ເຄື່ອງມືຈັດການ PDF ແບບໂອເພນຊອຣ໌ສ — ເຮັດວຽກໃນເຄື່ອງ, ເປັນສ່ວນຕົວ ແລະ ຂຽນສະຄຣິບໄດ້.
-	Join the ArtCraft community	ເຂົ້າຮ່ວມຊຸມຊົນ ArtCraft
-	Get help, share feedback and follow development on Discord.	ຂໍຄວາມຊ່ວຍເຫຼືອ, ແບ່ງປັນຄຳຕິຊົມ ແລະ ຕິດຕາມການພັດທະນາໄດ້ທີ່ Discord.
 	Recommended tools	ເຄື່ອງມືແນະນຳ
 	Use now	ໃຊ້ງານຕອນນີ້
 	Open file	ເປີດໄຟລ໌
@@ -311,10 +308,7 @@
 	Split document…	ແບ່ງເອກະສານ…
 	Number pages…	ໃສ່ເລກໜ້າ…
 	Keyboard shortcuts	ປຸ່ມລັດແປ້ນພິມ
-	Join the ArtCraft Discord	ເຂົ້າຮ່ວມ Discord ຂອງ ArtCraft
-	PdfCraft web page	ໜ້າເວັບ PdfCraft
 	PdfCraft on GitHub	PdfCraft ເທິງ GitHub
-	ArtCraft website	ເວັບໄຊຕ໌ ArtCraft
 	Check for updates…	ກວດສອບການອັບເດດ…
 	About PdfCraft	ກ່ຽວກັບ PdfCraft
 	Export a PDF	ສົ່ງອອກ PDF
@@ -1413,7 +1407,6 @@
 	Discard	ປະຖິ້ມ
 	Version {v}	ເວີຊັນ {v}
 	A clean-room, open-source PDF application written in Rust. MIT OR Apache-2.0.	ແອັບພລິເຄຊັນ PDF ໂອເພນຊອດແບບ clean-room ທີ່ຂຽນດ້ວຍ Rust. ພາຍໃຕ້ສັນຍາອະນຸຍາດ MIT ຫຼື Apache-2.0.
-	Part of	ສ່ວນໜຶ່ງຂອງ
 	Summarize Options	ຕົວເລືອກການສະຫຼຸບ
 	Choose a layout:	ເລືອກໂຄງຮ່າງ:
 	Comments only	ສະເພາະຄວາມເຫັນ
@@ -2429,3 +2422,9 @@ animation effects	Off	ປິດ
 	Make properties default	ກຳນົດຄຸນສົມບັດເປັນຄ່າເລີ່ມຕົ້ນ
 	Pages selected	ໜ້າທີ່ເລືອກ
 	Page properties	ຄຸນສົມບັດໜ້າ
+# Workplace build (Women for Women International): Adobe Sign for official signatures
+	Use Adobe Sign for official signatures	ໃຊ້ Adobe Sign ສຳລັບລາຍເຊັນທາງການ
+	Official signatures, and requests for signatures from people outside Women for Women International, go through Adobe Sign. Open Adobe Sign, sign in with your work account and upload this PDF there.	ລາຍເຊັນທາງການ ແລະ ການຂໍລາຍເຊັນຈາກບຸກຄົນນອກ Women for Women International ແມ່ນເຮັດຜ່ານ Adobe Sign. ເປີດ Adobe Sign, ເຂົ້າສູ່ລະບົບດ້ວຍບັນຊີວຽກຂອງທ່ານ ແລ້ວອັບໂຫຼດ PDF ນີ້ຢູ່ທີ່ນັ້ນ.
+	Open Adobe Sign	ເປີດ Adobe Sign
+	Sign here instead	ເຊັນຢູ່ນີ້ແທນ
+	Request signatures (Adobe Sign)	ຂໍລາຍເຊັນ (Adobe Sign)
